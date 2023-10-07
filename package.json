@@ -12,10 +12,13 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
-    "nuxt": "^3.7.4"
+    "nuxt": "^3.7.4",
+    "sass": "^1.69.0"
   },
   "dependencies": {
+    "@nuxt/image": "^1.0.0-rc.3",
     "@pinia/nuxt": "^0.4.11",
+    "animejs": "^3.2.1",
     "pinia": "^2.1.6"
   },
   "overrides": {

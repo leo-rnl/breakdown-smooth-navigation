@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxt/image',
   ],
 
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+  }
 })

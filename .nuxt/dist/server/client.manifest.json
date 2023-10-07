@@ -7,12 +7,12 @@
     "module": true,
     "resourceType": "script"
   },
-  "/Users/leornl/Code/Apps/nuxt template default/node_modules/nuxt/dist/app/entry.js": {
+  "/home/leornl/code/Sandbox/breakdown-smooth-navigation/node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
     "isEntry": true,
-    "file": "/Users/leornl/Code/Apps/nuxt template default/node_modules/nuxt/dist/app/entry.js"
+    "file": "/home/leornl/code/Sandbox/breakdown-smooth-navigation/node_modules/nuxt/dist/app/entry.js"
   }
 }

@@ -1,12 +1,17 @@
 <template>
 
+  <NuxtPage>
 
-  <div class="layout">
+
+    <div class="layout">
 
 
-    <slot></slot>
+      <slot></slot>
 
-  </div>
+    </div>
+
+  </NuxtPage>
+
 
 </template>
 
