@@ -1,58 +1,67 @@
 <template>
 
-  <NuxtLayout>
 
-    <section class="section">
 
-      <h1 class="section--title">
-        <span>Long</span>
-        <span>way</span>
-        <span>to</span>
-        <span>go</span>
-      </h1>
-
-      <Nuxt-img src="/spacemonkey.jpg"/>
-
-      <NuxtLink to="/about">About</NuxtLink>
-
-      <div class="section--bg"></div>
+   <NuxtLayout>
 
 
 
-    </section>
-    <section class="section two">
+        <section class="section">
 
-      <div class="section--bg"></div>
-    </section>
 
-  </NuxtLayout>
+          <h1 class="section--title -py-2">
+            <span>Long</span>
+            <span>way</span>
+            <span>to</span>
+            <span>go</span>
+          </h1>
+
+          <Nuxt-img src="/spacemonkey.jpg"/>
+
+
+
+          <div class="section--bg"></div>
+
+
+
+        </section>
+        <section class="section two">
+          <div class="section--bg z-0 pointer-events-none"></div>
+
+          <NuxtLink class="z-10 block" to="/about">About</NuxtLink>
+
+        </section>
+
+   </NuxtLayout>
+
+
 
 </template>
 
 <script setup>
 import anime from 'animejs/lib/anime.es.js';
+import {onBeforeRouteLeave} from "#app";
 
 
-definePageMeta({
-  pageTransition: {
-    name: 'custom-flip',
-    mode: 'out-in',
-    onBeforeEnter: (el) => {
-      console.log('Before enter...')
-    },
-    onEnter: (el, done) => {},
-    onAfterEnter: (el) => {}
-  }
-})
 
 
 
 onMounted(() => {
 
+  console.log('index mounted')
+
+  anim()
+
+
+
+})
+
+
+const anim = () => {
   /*
-  * Anime
-  *
-  */
+* Anime
+*
+*/
   const title = document.querySelector('.section--title')
   const titleParts = document.querySelectorAll('.section--title span')
   const background = document.querySelector('.section--bg')
@@ -61,9 +70,8 @@ onMounted(() => {
 
   anime({
     targets: titleParts,
-    opacity: 1,
-    translateY:[20, 0],
-    duration: 800,
+    translateY:[100, 0],
+    duration: 300,
     easing: 'easeInOutSine',
     delay: anime.stagger(100, {start: 500}) // increase delay by 100ms for each elements.
   })
@@ -81,7 +89,15 @@ onMounted(() => {
     }
   })
 
-   /* On scroll */
+  anime({
+    targets: img,
+    opacity: [0, 1],
+    translateY: [-500, 0],
+    duration: 500,
+    easing: 'easeInOutQuad'
+  })
+
+  /* On scroll */
 
   let previousTargetY = 0
 
@@ -107,16 +123,41 @@ onMounted(() => {
     previousTargetY = normalizeY
 
 
+
+
   }
 
   window.addEventListener('scroll', handleScroll)
 
+}
+
+onBeforeRouteLeave((to, from, next) => {
+  anime({
+    targets: document.querySelector('.two .section--bg'),
+    scale: 1.5,
+    duration: 1200,
+
+  })
+
+  anime({
+    targets: document.querySelector('.z-10'),
+    opacity: 0,
+    duration: 800,
+    complete: () => next()
+  })
+
 
 })
 
+
+
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+  .section.two {
+    @apply items-center;
+  }
 
   .section{
     @apply relative h-[100vh] w-[100vw] bg-gray-200 flex items-start justify-center;
@@ -127,7 +168,7 @@ onMounted(() => {
       transform-style: preserve-3d;
       top: 10vh;
       right: 15vw;
-      transform: perspective(1000px) rotateX(5deg) translateZ(200px);
+      transform: perspective(1000px) translateZ(200px) rotateX(5deg) translate3d(0px, 200px, 0px);
       width: 500px;
 
       &::after {
@@ -137,9 +178,9 @@ onMounted(() => {
         height: 500px;
         border: 1px red;
         z-index: 30;
-        transform: translate(-50%, -50%);
       }
     }
+
 
 
     &--bg {
@@ -164,6 +205,7 @@ onMounted(() => {
 
       transform-style: preserve-3d;
       transform: perspective(1500px) rotateX(5deg);
+      overflow: hidden;
 
       font-size: calc(7000vw / 2018);
       display: flex;
@@ -172,7 +214,7 @@ onMounted(() => {
 
       span {
         display: block;
-        opacity: 0;
+
         font-weight: 100;
 
         transition: font-weight .3s ease-in-out ;
