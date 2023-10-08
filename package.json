@@ -19,7 +19,8 @@
     "@nuxt/image": "^1.0.0-rc.3",
     "@pinia/nuxt": "^0.4.11",
     "animejs": "^3.2.1",
-    "pinia": "^2.1.6"
+    "pinia": "^2.1.6",
+    "three": "^0.157.0"
   },
   "overrides": {
     "vue": "latest"
