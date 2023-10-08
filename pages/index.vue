@@ -1,5 +1,4 @@
 <template>
-   <NuxtLayout>
         <section class="section">
           <h1 class="section--title -py-2">
             <span>Long</span>
@@ -14,7 +13,6 @@
           <div class="section--bg z-0 pointer-events-none"></div>
           <NuxtLink class="z-10 block" to="/about">About</NuxtLink>
         </section>
-   </NuxtLayout>
 </template>
 
 <script setup>
@@ -115,7 +113,7 @@ onBeforeRouteLeave((to, from, next) => {
   }
 
   .section{
-    @apply relative h-[100vh] w-[100vw] bg-gray-200 flex items-start justify-center;
+    @apply relative h-[100vh] w-[100vw] flex items-start justify-center;
 
     img {
       position: absolute;

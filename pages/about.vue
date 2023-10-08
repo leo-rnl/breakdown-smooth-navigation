@@ -1,5 +1,4 @@
 <template>
-    <NuxtLayout>
       <section class="section">
         <div class="section--bg"></div>
         <div class="z-99">
@@ -7,7 +6,6 @@
           <NuxtLink to="/">Home</NuxtLink>
         </div>
       </section>
-    </NuxtLayout>
 </template>
 
 
@@ -51,10 +49,10 @@ onBeforeRouteLeave((from, to, next) => {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .section {
-  @apply relative h-[100vh] w-[100vw] bg-gray-200 flex items-center justify-center;
+  @apply relative h-[100vh] w-[100vw] flex items-center justify-center;
 
   & > div {
     z-index: 10;
