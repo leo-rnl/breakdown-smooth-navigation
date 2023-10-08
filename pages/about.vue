@@ -1,21 +1,13 @@
 <template>
-
-  <section>
-
-
-    <section class="section">
-      <div class="section--bg"></div>
-      <div class="z-99">
-        <h1>About</h1>
-        <NuxtLink to="/">Home</NuxtLink>
-      </div>
-
-
-    </section>
-
-
-  </section>
-
+    <NuxtLayout>
+      <section class="section">
+        <div class="section--bg"></div>
+        <div class="z-99">
+          <h1>About</h1>
+          <NuxtLink to="/">Home</NuxtLink>
+        </div>
+      </section>
+    </NuxtLayout>
 </template>
 
 
@@ -56,8 +48,6 @@ onBeforeRouteLeave((from, to, next) => {
   })
 
 })
-
-
 
 </script>
 

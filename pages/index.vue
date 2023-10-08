@@ -1,63 +1,31 @@
 <template>
-
-
-
    <NuxtLayout>
-
-
-
         <section class="section">
-
-
           <h1 class="section--title -py-2">
             <span>Long</span>
             <span>way</span>
             <span>to</span>
             <span>go</span>
           </h1>
-
           <Nuxt-img src="/spacemonkey.jpg"/>
-
-
-
           <div class="section--bg"></div>
-
-
-
         </section>
         <section class="section two">
           <div class="section--bg z-0 pointer-events-none"></div>
-
           <NuxtLink class="z-10 block" to="/about">About</NuxtLink>
-
         </section>
-
    </NuxtLayout>
-
-
-
 </template>
 
 <script setup>
 import anime from 'animejs/lib/anime.es.js';
 import {onBeforeRouteLeave} from "#app";
 
-
-
-
-
 onMounted(() => {
-
-  console.log('index mounted')
-
-  anim()
-
-
-
+  animSetup()
 })
 
-
-const anim = () => {
+const animSetup = () => {
   /*
 * Anime
 *
@@ -99,8 +67,6 @@ const anim = () => {
 
   /* On scroll */
 
-  let previousTargetY = 0
-
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -109,21 +75,13 @@ const anim = () => {
   const handleScroll = () => {
 
     const scrollY = window.scrollY;
-
     const normalizeY = scrollY / sizes.height
 
-    // title.style.transform = 'perspective(1500px) rotateX(' + (5 + (40 * (previousTargetY))) +  'deg)'
-    title.style.transform = 'perspective(1500px) rotateX(' + (5 + (40 * (previousTargetY))) +  'deg) translate3d(0px, ' + (-400 * (previousTargetY)) +  'px, 0px)'
-
-    img.style.transform = 'perspective(1000px) translateZ(200px) rotateX(' + (5 + (40 * (previousTargetY))) +  'deg) translate3d(0px, ' + (200 - (800 * previousTargetY)) +  'px, 0px)'
-
-    background.style.transform = 'perspective(1500px) rotateX(' + (5 + (40 * (previousTargetY))) +  'deg) translate3d(0px, ' + (-200 * (previousTargetY)) +  'px, 0px)'
-    background2.style.transform = 'perspective(1500px) rotateX(' + (-50 + (55 * (previousTargetY))) +  'deg) translate3d(0px, ' + (-200 * (previousTargetY)) +  'px, 0px)'
-
-    previousTargetY = normalizeY
-
-
-
+    // Apply transforms
+    title.style.transform = 'perspective(1500px) rotateX(' + (5 + (40 * (normalizeY))) +  'deg) translate3d(0px, ' + (-400 * (normalizeY)) +  'px, 0px)'
+    img.style.transform = 'perspective(1000px) translateZ(200px) rotateX(' + (5 + (40 * (normalizeY))) +  'deg) translate3d(0px, ' + (200 - (800 * normalizeY)) +  'px, 0px)'
+    background.style.transform = 'perspective(1500px) rotateX(' + (5 + (40 * (normalizeY))) +  'deg) translate3d(0px, ' + (-200 * (normalizeY)) +  'px, 0px)'
+    background2.style.transform = 'perspective(1500px) rotateX(' + (-50 + (55 * (normalizeY))) +  'deg) translate3d(0px, ' + (-200 * (normalizeY)) +  'px, 0px)'
 
   }
 
@@ -132,11 +90,11 @@ const anim = () => {
 }
 
 onBeforeRouteLeave((to, from, next) => {
+
   anime({
     targets: document.querySelector('.two .section--bg'),
     scale: 1.5,
     duration: 1200,
-
   })
 
   anime({
@@ -146,10 +104,7 @@ onBeforeRouteLeave((to, from, next) => {
     complete: () => next()
   })
 
-
 })
-
-
 
 </script>
 
